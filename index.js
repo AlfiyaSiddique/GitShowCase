@@ -1,6 +1,6 @@
 const rootRoute = "https://api.github.com/users/";
 let totalReposOfUser = 0;
-let lastRepoindex = 10;
+let numberOfRepoPerPage = document.getElementById("reponumber").value;
 let activePageId = "page1";
 
 const getRequest = async (url) => {
@@ -71,6 +71,26 @@ const generateTemplate = (repo1, repo2) => {
 const populateRepositories = (data) => {
   let content = "";
   let i = 0;
+  let oddObj = null;
+  let oddTemplate = "";
+
+  if (data.length % 2 !== 0) {
+    oddObj = data[data.length - 1];
+   let topic = returnTopicElement(oddObj.topics)
+    data = data.slice(0, data.length - 1);
+    oddTemplate = `
+    <div class="p-2 card">
+                        <div class='card-title'>${oddObj.name}</div>
+                        <div>${
+                          oddObj.description !== null && oddObj.description
+                        }</div>
+                         <ul class='d-flex flex-wrap flex-row ps-0'>
+                            ${topic !== null && topic}
+                         </ul>
+                    </div>
+    
+    `;
+  }
 
   while (i < data.length) {
     const limitedData = data.slice(i, i + 2).map((repo) => {
@@ -85,7 +105,7 @@ const populateRepositories = (data) => {
     i += 2;
   }
 
-  document.getElementById("repo-list").innerHTML = content;
+  document.getElementById("repo-list").innerHTML = content+oddTemplate;
 };
 
 function pageClick() {
@@ -97,16 +117,16 @@ function pageClick() {
       let number = parseInt(page.innerText);
       if (page.id == "page1") {
         populateRepositories(
-          totalReposOfUser.slice(0, document.getElementById("reponumber").value)
+          totalReposOfUser.slice(0, numberOfRepoPerPage)
         );
+        return;
       }
       populateRepositories(
         totalReposOfUser.slice(
-          lastRepoindex,
-          document.getElementById("reponumber").value * number
+          (numberOfRepoPerPage* number) - numberOfRepoPerPage,
+          numberOfRepoPerPage* number
         )
       );
-      lastRepoindex = document.getElementById("reponumber").value * number;
     });
   });
 }
@@ -151,7 +171,7 @@ document.getElementById("search").addEventListener("keypress", async (e) => {
       totalReposOfUser = getRepos;
       addPagination(10);
       pageClick();
-      populateRepositories(getRepos.slice(0, lastRepoindex));
+      populateRepositories(getRepos.slice(0, numberOfRepoPerPage));
     }
   }
 });
@@ -159,6 +179,6 @@ document.getElementById("search").addEventListener("keypress", async (e) => {
 document.getElementById("reponumber").addEventListener("change", (e) => {
   addPagination(e.target.value);
   pageClick();
-  lastRepoindex = e.target.value;
+  numberOfRepoPerPage = e.target.value;
   populateRepositories(totalReposOfUser.slice(0, e.target.value));
 });
