@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Index.html */
+html, body{
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#hero{
+    background-image:  url('./images/herobg.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+#landing{
+    margin-top: 4rem;
+    height: 90vh;
+}
+
+#search-div{
+    width: 55%;
+    margin: 10px;
+}
+
+#landing .input-group{
+    border: 1px solid rgb(65, 63, 63);
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#landing .form-control:focus{
+    box-shadow: none;
+    border-color: none;
+}
+
+/* Profile.html */
+main{
+    width: 70vw;
+    margin: auto;
+    margin-top: 6rem;
+}
+
+.profile{
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+}
+
+.username{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+/* Repositories Section */
+#repositories{
+    margin-top: 3rem;
+}
+
+#repo-list .card{
+    width: 32vw;
+}
