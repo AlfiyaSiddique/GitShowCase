@@ -12,7 +12,7 @@ GitShowCase is a simple web application that allows users to showcase GitHub pro
 
 1. Clone the repo: 
 ``` bash
-Git clone https://github.com/AlfiyaSiddique/GitShowCase.git
+git clone https://github.com/AlfiyaSiddique/GitShowCase.git
 ```
 
 2. Copy index.html path and paste in browser or use extension like live server to run the web application.
