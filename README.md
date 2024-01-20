@@ -15,7 +15,7 @@ GitShowCase is a simple web application that allows users to showcase GitHub pro
 
 ## Note
 
-Please note that GitShowCase focuses on showcasing non-forked repositories to highlight the original projects and contributions of the GitHub user. Also the search bar in list repositories section is only for ui purpose and is not functional
+Please note that GitShowCase focuses on showcasing non-forked repositories to highlight the original projects and contributions of the GitHub user. Also the search bar in list repositories section is only for UI purpose and is not functional
 
 Also note that some repos that does not contain topics and description, it is because these values are empty or null from the api received data.
 
