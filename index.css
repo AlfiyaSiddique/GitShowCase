@@ -82,6 +82,14 @@ main {
     width: 15vw;
 }
 
+#repo-list a{
+    text-decoration: none;
+}
+
+.card ul{
+    margin-top: 20px;
+}
+
 /* Classes for all */
 .link {
     color: black;

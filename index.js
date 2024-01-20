@@ -21,11 +21,11 @@ const populateProfile = (data) => {
       <div class="p-2">${data.bio}</div>`;
 
   const contentPart2 = `<div class="p-2"><i class="fa fa-map-marker pe-3"></i>${data.location}</div>
-  <a class='link' href='https://twitter.com/${data.twitter}'class="p-2"><i class="fa fa-twitter pe-3"></i>https://twitter.com/${data.twitter}</a>`;
+  <a class='link' target='_blank' href='https://twitter.com/${data.twitter}'class="p-2"><i class="fa fa-twitter pe-3"></i>https://twitter.com/${data.twitter}</a>`;
 
   const footer = `</div>
 </div>
-<a href='${data.github}' class='link'><i class="fa fa-github pe-3"></i>${data.github}</a>
+<a target='_blank' href='${data.github}' class='link'><i class="fa fa-github pe-3"></i>${data.github}</a>
 `;
   let html =
     data.twitter && data.location
@@ -48,7 +48,7 @@ const generateTemplate = (repo1, repo2) => {
   const topic2 = returnTopicElement(repo2.topics);
 
   const template = `<div class="d-flex flex-wrap flex-row justify-content-between mb-3">
-                    <div class="p-2 card">
+                    <a href= '${repo1.link}' target='_blank'><div class="p-2 card">
                         <div class='card-title'>${repo1.name}</div>
                         <div>${
                           repo1.description !== null && repo1.description
@@ -56,14 +56,14 @@ const generateTemplate = (repo1, repo2) => {
                          <ul class='d-flex flex-wrap flex-row ps-0'>
                             ${topic1 !== null && topic1}
                          </ul>
-                    </div>
-                    <div class="p-2 card">
+                    </div></a>
+                    <a href= '${repo1.link}' target='_blank'><div class="p-2 card">
                     <div class='card-title'>${repo2.name}</div>
                     <div>${repo2.description}</div>
                      <ul class='d-flex flex-wrap flex-row ps-0'>
                         ${topic2 !== null && topic2}
                      </ul>
-                    </div>
+                    </div></a>
                 </div>`;
   return template;
 };
@@ -79,7 +79,7 @@ const populateRepositories = (data) => {
    let topic = returnTopicElement(oddObj.topics)
     data = data.slice(0, data.length - 1);
     oddTemplate = `
-    <div class="p-2 card">
+    <a href= '${oddObj.html_url}' target='_blank'><div class="p-2 card">
                         <div class='card-title'>${oddObj.name}</div>
                         <div>${
                           oddObj.description !== null && oddObj.description
@@ -87,7 +87,7 @@ const populateRepositories = (data) => {
                          <ul class='d-flex flex-wrap flex-row ps-0'>
                             ${topic !== null && topic}
                          </ul>
-                    </div>
+                    </div></a>
     
     `;
   }
@@ -98,6 +98,7 @@ const populateRepositories = (data) => {
         name: repo.name,
         description: repo.description || " ",
         topics: repo.topics || [],
+        link: repo.html_url
       };
     });
     const template = generateTemplate(limitedData[0], limitedData[1]);
