@@ -7,6 +7,18 @@ GitShowCase is a simple web application that allows users to showcase GitHub pro
 1. Visit the GitShowCase web app.
 2. Enter the desired GitHub username in the provided input field and press Enter.
 
+
+## Run On Local:
+
+1. Clone the repo: 
+``` bash
+Git clone https://github.com/AlfiyaSiddique/GitShowCase.git
+```
+
+2. Copy index.html path and paste in browser or use extension like live server to run the web application.
+
+
+
 ## Features
 
 - **User Information:** Obtain details about the GitHub user, such as their name, bio, and avatar.
